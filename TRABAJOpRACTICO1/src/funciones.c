@@ -8,17 +8,31 @@
 #include "funciones.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 float ingresarKilometroPrecio(float dato)
 {
-    printf("\nPor favor, ingresar un numero: ");
-    fflush(stdin);
-    scanf("%f",&dato);
+
+			if(dato !=0)
+			{
+
+				printf("\nERROR...Ingrese nuevamente ");
+
+			}else
+			{
+
+				printf("\nPor favor, ingresar un numero: ");
+				fflush(stdin);
+				scanf("%f",&dato);
+
+			}
 
 
-    return dato;
+
+		return dato;
 
 }
+
 
 float funcionDescuento(float dato)
 {
@@ -65,13 +79,14 @@ float funcionPrecioUnitario(float dato, float kilometro)
 	return precioUnitario;
 }
 
-float funcionDiferenciaPrecios(float datoLatam, float datoAerolineas)
+float funcionDiferenciaPrecios(float datoAerolineas, float datoLatam)
 {
 
 	float diferenciaPrecios;
 
-	diferenciaPrecios = datoLatam - datoAerolineas;
+	diferenciaPrecios = datoAerolineas - datoLatam;
 
 	return diferenciaPrecios;
 }
+
 
