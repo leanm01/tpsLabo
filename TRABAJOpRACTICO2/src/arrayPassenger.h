@@ -40,8 +40,7 @@ int initPassengers(Passenger* list, int len);
 * \param flycode[] char
 * \return int Return (-1) if Error [Invalid length or NULL pointer or without
 free space] - (0) if Ok**/
-int addPassenger(Passenger* list, int len, int id, char name[],char
-lastName[],float price,int typePassenger, char flycode[]);
+int addPassenger(Passenger* list, int len, int contador);
 /** \brief find a Passenger by Id en returns the index position in array.
 *
 * \param list Passenger*
@@ -79,7 +78,9 @@ int sortPassengers(Passenger* list, int len, int order);
 * \return int
 *
 */
-int printPassenger(Passenger* list, int length);
+int printPassengers(Passenger* list, int length);
+
+int printPassenger(Passenger* list, int i);
 /** \brief Sort the elements in the array of passengers, the argument order
 indicate UP or DOWN order
 *

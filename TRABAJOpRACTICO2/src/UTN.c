@@ -80,7 +80,7 @@ int utn_getInt(char* mensaje, char* mensajeError, int* pResultado,int reintentos
  */
 int esUnNombreValido(char* cadena,int limite)
 {
-	int respuesta = 1; // TODO OK
+	int respuesta = 1;
 
 	for(int i=0; i<=limite && cadena[i] != '\0';i++)
 	{
@@ -441,10 +441,11 @@ int informes()
     int respuesta;
 
     printf("                INFORMES                \n\n");
-    printf("1-Ordenados alfabeticamente y por sector\n");
-    printf("2-Total y promedio de los salarios\n");
+    printf("1-Listado de pasajeros ordenados alfabéticamente por Apellido y Tipo de pasajero.\n");
+    printf("2-Total y promedio de los precios de los pasajes, y cuántos pasajeros superan el precio promedio.\n");
+    printf("2-Listado de los pasajeros por Código de vuelo y estados de vuelos ‘ACTIVO’\n");
     printf("3-Salir\n");
-    utn_getInt("\nIngrese opcion: ", "", &respuesta, 1, 3, 1);
+    utn_getInt("\nIngrese opcion: ", "", &respuesta, 1, 4, 1);
 
     return respuesta;
 }

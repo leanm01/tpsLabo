@@ -10,9 +10,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "UTN.h"
 #include "arrayPassenger.h"
-
+#define TAM 5
 
 
 int main(void) {
@@ -20,7 +22,16 @@ int main(void) {
 	setbuf(stdout, NULL);
 
 
+
+
+	 Passenger listado[TAM];
+	 initPassengers(listado, TAM);
+
+	 int contadorId=0;
 	 int opcion;
+	 int estadoAlta;
+	 int estadoBaja;
+	 int hayPasajero=0;
 
 
 	 do
@@ -30,12 +41,49 @@ int main(void) {
 	        {
 	            case 1:
 
+	            	estadoAlta = addPassenger(listado, TAM, contadorId);
 
+	            	if(estadoAlta==-1)
+	            	{
+
+	            		printf("\nAlta pasajero erronea!!\n\n");
+
+	            	}else
+	            	{
+
+	            		printf("\nAlta pasajero exitosa!!\n\n");
+	            		contadorId++;
+	            		hayPasajero=1;
+
+	            	}
 
 
 	                break;
 
 	            case 2:
+
+	            	if(hayPasajero==0)
+	            	{
+
+	            		printf("\nNo hay pasajeros que mostrar!!\n\n");
+
+	            	}else
+	            	{
+
+	            		estadoBaja=printPassengers(listado, TAM);
+
+	            		 if (estadoBaja==-1)
+	            		 {
+							printf("\nOperacion erronea!!\n\n");
+
+						 }
+				         else
+						 {
+							printf("\nOperacion exitosa!!\n\n");
+			             }
+
+
+	            	}
 
 
 	                break;
