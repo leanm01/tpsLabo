@@ -23,7 +23,7 @@ int initPassengers(Passenger* list, int len)
 		{
 
 			list[i].isEmpty=1;
-			return 0;
+			retorno=0;
 
 		}
 
@@ -52,18 +52,11 @@ int addPassenger(Passenger* list, int len, int contador)
 			  if(list[i].isEmpty==1)
 			  {
 
-
 				  espacioLibre=i;
 				  break;
-
-
 			  }
 
-
-
-
 		  }
-
 
 
 	  }
@@ -76,11 +69,11 @@ int addPassenger(Passenger* list, int len, int contador)
 
 		   utn_getNombre("\nIngrese el apellido: ","\nIngrese un apellido correcto: ",list[espacioLibre].lastName,2,51);
 
-		   utn_getFloat("\nIngrese el Precio: ","\nIngresa un valor correcto 0-99999: ",&list[espacioLibre].price,2,99999,0);
+		   utn_getFloat("\nIngrese el Precio: ","\nIngresa un valor correcto 0-99999: ",&list[espacioLibre].price,2,99999,2);
 
-		   utn_getNombre("\nIngrese el Codigo de vuelo(no Numerico): ","\nIngrese un codigo correcto: ",list[espacioLibre].flycode,10,2);//getNombre lo uso por el char
+		   utn_getNombre("\nIngrese el Codigo de vuelo(no Numerico): ","\nIngrese un codigo correcto: ",list[espacioLibre].flycode,2,10);//getNombre lo uso por el char
 
-		   utn_getInt("\nIngrese el tipo de pasajero: ","\nIngresa un valor correcto 0-999: ",&list[espacioLibre].typePassenger,2,999,0);
+		   utn_getInt("\nIngrese el tipo de pasajero: ","\nIngresa un valor correcto 0-999: ",&list[espacioLibre].typePassenger,2,999,2);
 
 
 		   list[espacioLibre].id=contador+1;
@@ -104,11 +97,92 @@ int findPassengerById(Passenger* list, int len,int id)
 return 0;
 }
 
-int removePassenger(Passenger* list, int len, int id)
+int removePassenger(Passenger* list, int len)
 {
-return -1;
+    int aux;
+    char auxChar;
+    int i;
+    int resultado = 0;
+
+    printPassengers(list,len);
+
+    utn_getInt("\nIngrese el ID  del pasajero que quiere dar de baja: ","\nIngresa un valor correcto 0-999: ",&aux,2,999,2);
+
+    for(i=0;i<len;i++)
+    {
+        if(aux==list[i].id && list[i].isEmpty==0)
+        {
+        	printPassenger(list,i);
+            utn_getChar("\nDesea elimnar este pasajero(s--O--n): ","\nIngrese la opcion correcta entre(s--O--n): ",&auxChar,2);
+
+            if(auxChar=='s')
+            {
+            	list[i].isEmpty=1;
+                resultado=1;
+                break;
+            }
+        }
+    }
+    return resultado;
 }
 
+int modifiyPassenger(Passenger* list, int len)
+{
+
+	 int retorno=-2;
+	 int opcionMod;
+	 int i;
+	 int aux;
+	 char auxChar;
+
+
+	 printPassengers(list, len);
+
+	 utn_getInt("\nIngrese el ID  del pasajero que quiera modificar: ","\nIngresa un valor correcto 0-999: ",&aux,2,999,0);
+
+
+	 if(len > 0 && list != NULL)
+	 {
+	      for(i=0;i<len;i++)
+	      {
+	            if(aux==list[i].id && list[i].isEmpty==0)
+	            {
+	            	printPassenger(list,i);
+	                utn_getChar("\nDesea modificar este pasajero(s--O--n): ","\nIngrese la opcion correcta entre(s--O--n): ",&auxChar,2);
+
+	                 if(auxChar=='s')
+	                 {
+	                     opcionMod=modificar();
+
+	                     switch(opcionMod)
+	                     {
+	                             case 1:
+	                         	     utn_getNombre("\nIngrese el nombre: ","\nIngrese un nombre correcto: ",list[i].name,2,51);
+	                                 break;
+	                             case 2:
+	                         	     utn_getNombre("\nIngrese el apellido: ","\nIngrese un apellido correcto: ",list[i].lastName,2,51);
+	                                 break;
+	                             case 3:
+	                            	 utn_getFloat("\nIngrese el precio: ","\nIngresa un valor correcto 0-99999: ",&list[i].price,2,99999,2);
+	                                 break;
+	                             case 4:
+	                            	 utn_getNombre("\nIngrese el codigo: ","\nIngresa un valor correcto 0-999: ",list[i].flycode,2,10);
+	                                 break;
+	                             case 5:
+	                            	 utn_getInt("\nIngrese el Tipo de pasajero: ","\nIngresa un valor correcto 0-99999: ",&list[i].typePassenger,2,99999,2);
+	                             	 break;
+
+	                     }
+	                     retorno=1;
+	                     break;
+	                }
+	            }
+	       }
+
+	  }
+
+	return retorno;
+}
 int sortPassengers(Passenger* list, int len, int order)
 {
 return 0;
@@ -149,7 +223,7 @@ int printPassenger(Passenger* list, int i)
 {
 
 
-	printf("\nNOMBRE:%s---APELLIDO:%s---PRECIO:%f---CODIGO:%d---TIPO:%d---ID:%d\n",         list[i].name,
+	printf("\nNOMBRE:%s---APELLIDO:%s---PRECIO:%.2f---CODIGO:%s---TIPO:%d---ID:%d\n",       list[i].name,
 																							list[i].lastName,
 																							list[i].price,
 																							list[i].flycode,

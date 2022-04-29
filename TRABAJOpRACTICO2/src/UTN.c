@@ -463,10 +463,11 @@ int modificar()
     printf("                Modificar                \n\n");
     printf("1-Nombre\n");
     printf("2-Apellido\n");
-    printf("3-Salario\n");
-    printf("4-Sector\n");
-    printf("5-Salir\n");
-    utn_getInt("\nIngrese opcion: ", "", &respuesta, 1, 5, 1);
+    printf("3-Precio\n");
+    printf("4-Codigo de vuelo\n");
+    printf("5-Tipo de pasajero\n");
+    printf("6-Salir\n");
+    utn_getInt("\nIngrese opcion: ", "", &respuesta, 1, 6, 1);
 
     return respuesta;
 }

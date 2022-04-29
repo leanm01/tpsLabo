@@ -88,13 +88,53 @@ int main(void) {
 
 	                break;
 	            case 3:
+	            	if(hayPasajero==0)
+	                {
 
+	            		 printf("\nNo hay pasajeros que modificar!!\n\n");
+
+	                }else
+	                {
+
+	                	estadoBaja=modifiyPassenger(listado, TAM);
+
+	            		if(estadoBaja==-1)
+	            		{
+	            			printf("\nOperacion erronea!!\n\n");
+
+	            	    }
+	            	    else
+	            	    {
+	            			printf("\nOperacion exitosa!!\n\n");
+	            	    }
+
+	                }
 
 
 	            break;
 
 	            case 4:
+	            	if(hayPasajero==0)
+	            	{
 
+	            		  printf("\nNo hay pasajeros que eliminar!!\n\n");
+
+	                }else
+	                {
+
+	            		  estadoBaja=removePassenger(listado, TAM);
+
+	            		  if(estadoBaja==-1)
+	            		  {
+	            		         printf("\nOperacion erronea!!\n\n");
+
+	            		  }
+	            		  else
+	            		  {
+	            		         printf("\nOperacion exitosa!!\n\n");
+	            		  }
+
+	                }
 
 
 

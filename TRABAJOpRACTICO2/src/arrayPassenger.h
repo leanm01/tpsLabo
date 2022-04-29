@@ -60,7 +60,7 @@ int findPassengerById(Passenger* list, int len,int id);
 find a passenger] - (0) if Ok
 *
 */
-int removePassenger(Passenger* list, int len, int id);
+int removePassenger(Passenger* list, int len);
 /** \brief Sort the elements in the array of passengers, the argument order
 indicate UP or DOWN order
 *
@@ -71,6 +71,8 @@ indicate UP or DOWN order
 *
 */
 int sortPassengers(Passenger* list, int len, int order);
+
+
 /** \brief print the content of passengers array
 *
 * \param list Passenger*
@@ -80,7 +82,7 @@ int sortPassengers(Passenger* list, int len, int order);
 */
 int printPassengers(Passenger* list, int length);
 
-int printPassenger(Passenger* list, int i);
+
 /** \brief Sort the elements in the array of passengers, the argument order
 indicate UP or DOWN order
 *
@@ -89,5 +91,7 @@ indicate UP or DOWN order
 * \param order int [1] indicate UP - [0] indicate DOWN
 * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok**/
 int sortPassengersByCode(Passenger* list, int len, int order);
+int modifiyPassenger(Passenger* list, int len);
+int printPassenger(Passenger* list, int i);
 
 #endif /* ARRAYPASSENGER_H_ */
