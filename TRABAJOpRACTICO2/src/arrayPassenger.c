@@ -1,15 +1,32 @@
-/*
- * arrayPassenger.c
- *
- *  Created on: 19 abr. 2022
- *      Author: Leandro
- */
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <conio.h>
 #include "UTN.h"
 #include "arrayPassenger.h"
 
+
+
+void initAlumnosConDatos(Passenger list[])
+{
+
+	Passenger auxLista[5]={{101,"Pepe","Gonzales",18000,"ty",5},
+							{102,"Rodrigo","Collins",25000,"xe",2},
+							{103,"Matias","Xeller",24000,"po",7},
+							{104,"Jose","Rodriguez",10000,"er",1},
+							{105,"Marcos","Millan",20000,"mn",6}};
+
+
+
+    int i;
+
+    for (i=0; i<5; i++)
+    {
+    	list[i]=auxLista[i];
+		list[i].isEmpty = 0; // OCUPADO.
+    }
+}
 int initPassengers(Passenger* list, int len)
 {
 
@@ -29,10 +46,7 @@ int initPassengers(Passenger* list, int len)
 
 
 	}
-
-
-
-    return retorno;
+	return retorno;
 }
 
 int addPassenger(Passenger* list, int len, int contador)
@@ -71,7 +85,7 @@ int addPassenger(Passenger* list, int len, int contador)
 
 		   utn_getFloat("\nIngrese el Precio: ","\nIngresa un valor correcto 0-99999: ",&list[espacioLibre].price,2,99999,2);
 
-		   utn_getNombre("\nIngrese el Codigo de vuelo(no Numerico): ","\nIngrese un codigo correcto: ",list[espacioLibre].flycode,2,10);//getNombre lo uso por el char
+		   utn_getNombre("\nIngrese el Codigo de vuelo(no Numerico): ","\nIngrese un codigo correcto: ",list[espacioLibre].flycode,2,10);
 
 		   utn_getInt("\nIngrese el tipo de pasajero: ","\nIngresa un valor correcto 0-999: ",&list[espacioLibre].typePassenger,2,999,2);
 
@@ -92,10 +106,6 @@ int addPassenger(Passenger* list, int len, int contador)
    return resultado;
 }
 
-int findPassengerById(Passenger* list, int len,int id)
-{
-return 0;
-}
 
 int removePassenger(Passenger* list, int len)
 {
@@ -106,7 +116,7 @@ int removePassenger(Passenger* list, int len)
 
     printPassengers(list,len);
 
-    utn_getInt("\nIngrese el ID  del pasajero que quiere dar de baja: ","\nIngresa un valor correcto 0-999: ",&aux,2,999,2);
+    utn_getInt("\nIngrese el ID  del pasajero que quiere dar de baja: ","\nIngresa un valor correcto 0-999: ",&aux,2,999,0);
 
     for(i=0;i<len;i++)
     {
@@ -183,9 +193,41 @@ int modifiyPassenger(Passenger* list, int len)
 
 	return retorno;
 }
-int sortPassengers(Passenger* list, int len, int order)
+int sortPassengers(Passenger* list, int len)
 {
-return 0;
+
+	Passenger auxiliarPassenger;
+
+	int i;
+	int j;
+	int retorno=0;
+
+	if(list != NULL && len >=0)
+	{
+
+		for(i=0;i < len ;i++)
+		{
+
+
+			for(j=0;j < len ;j++)
+			{
+
+
+				if(strcmp(list[i].lastName,list[j].lastName) > 0 || (strcmp(list[i].lastName,list[j].lastName) == 0 ))
+				{
+
+					auxiliarPassenger=list[i];
+					list[i]=list[j];
+					list[j]=auxiliarPassenger;
+					retorno=1;
+				}
+			}
+
+		}
+
+	}
+
+	return retorno;
 }
 
 int printPassengers(Passenger* list, int length)
@@ -199,16 +241,10 @@ int printPassengers(Passenger* list, int length)
 
 		for(i=0;i<length;i++)
 		{
-
 			if(list[i].isEmpty==0)
 			{
-
 				printPassenger(list, i);
-
-
 			}
-
-
 		}
 
 		resultado=1;
@@ -237,9 +273,36 @@ int printPassenger(Passenger* list, int i)
 
 
 }
-
-
-int sortPassengersByCode(Passenger* list, int len, int order)
+void totalAverage(Passenger* list, int len)
 {
-return 0;
+    int contador=0;
+    int contadorPromedio=0;
+    float pricePromedio=0;
+    float price=0;
+
+    for (int i=0;i<len;i++)
+        {
+            if (list[i].isEmpty==0)
+            {
+            	price = price + list[i].price;
+                contador++;
+            }
+
+        }
+
+    pricePromedio = price / contador;
+
+      for (int i=0;i<len;i++)
+        {
+            if (list[i].isEmpty==0 && list[i].price >= pricePromedio)
+            {
+                contadorPromedio++;
+            }
+
+        }
+
+    printf("\nEl salario promedio es:%.2f\n",pricePromedio);
+    printf("\nLa cantidad de empleados que superan el salario promedio son:%d\n",contadorPromedio);
+
+
 }

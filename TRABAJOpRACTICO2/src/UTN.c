@@ -439,13 +439,13 @@ int menu()
 int informes()
 {
     int respuesta;
-
+    printf("|||||||||||||||||||||||||||||||||||||||||\n\n");
     printf("                INFORMES                \n\n");
+    printf("|||||||||||||||||||||||||||||||||||||||||\n\n");
     printf("1-Listado de pasajeros ordenados alfabéticamente por Apellido y Tipo de pasajero.\n");
     printf("2-Total y promedio de los precios de los pasajes, y cuántos pasajeros superan el precio promedio.\n");
-    printf("2-Listado de los pasajeros por Código de vuelo y estados de vuelos ‘ACTIVO’\n");
     printf("3-Salir\n");
-    utn_getInt("\nIngrese opcion: ", "", &respuesta, 1, 4, 1);
+    utn_getInt("\nIngrese opcion: ", "", &respuesta, 1, 3, 1);
 
     return respuesta;
 }
@@ -459,12 +459,13 @@ int informes()
 int modificar()
 {
     int respuesta;
-
+    printf("|||||||||||||||||||||||||||||||||||||||||\n\n");
     printf("                Modificar                \n\n");
+    printf("|||||||||||||||||||||||||||||||||||||||||\n\n");
     printf("1-Nombre\n");
     printf("2-Apellido\n");
     printf("3-Precio\n");
-    printf("4-Codigo de vuelo\n");
+    printf("4-Codigo de vuelo(no numerico)\n");
     printf("5-Tipo de pasajero\n");
     printf("6-Salir\n");
     utn_getInt("\nIngrese opcion: ", "", &respuesta, 1, 6, 1);

@@ -14,8 +14,7 @@
 #include <ctype.h>
 #include "UTN.h"
 #include "arrayPassenger.h"
-#define TAM 5
-
+#define TAM 10
 
 int main(void) {
 
@@ -27,12 +26,15 @@ int main(void) {
 	 Passenger listado[TAM];
 	 initPassengers(listado, TAM);
 
+
+
 	 int contadorId=0;
 	 int opcion;
 	 int estadoAlta;
 	 int estadoBaja;
 	 int hayPasajero=0;
 
+	 initAlumnosConDatos(listado);
 
 	 do
 	    {
@@ -148,7 +150,27 @@ int main(void) {
 	                      case 1:
 
 
+	                    	    if(hayPasajero==0)
+								{
 
+									  printf("\nNo hay pasajeros que ordenar!!\n\n");
+
+								}else
+								{
+
+									  estadoBaja=sortPassengers(listado, TAM);
+
+									  if(estadoBaja==-1)
+									  {
+											 printf("\nOperacion erronea!!\n\n");
+
+									  }
+									  else
+									  {
+											 printf("\nOperacion exitosa!!\n\n");
+									  }
+
+								}
 
 
 
@@ -156,6 +178,27 @@ int main(void) {
 
 	                      case 2:
 
+	                    	    if(hayPasajero==0)
+							 	{
+
+									  printf("\nNo hay pasajeros que sacar promedio y total!!\n\n");
+
+								}else
+								{
+
+									  totalAverage(listado, TAM);
+
+									  if(estadoBaja==-1)
+									  {
+											 printf("\nOperacion erronea!!\n\n");
+
+									  }
+									  else
+									  {
+											 printf("\nOperacion exitosa!!\n\n");
+									  }
+
+								}
 
 
 
