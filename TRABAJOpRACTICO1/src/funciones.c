@@ -21,7 +21,7 @@ float ingresarKilometroPrecio(float dato)
 			}else
 			{
 
-				printf("\nPor favor, ingresar un numero: ");
+				printf("\nIngrese un numero: ");
 				fflush(stdin);
 				scanf("%f",&dato);
 

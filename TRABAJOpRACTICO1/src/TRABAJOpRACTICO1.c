@@ -20,40 +20,62 @@ int main(void) {
 
 	setbuf(stdout, NULL);
 
-    float ingresarNumeroKM=0;
-    float ingresarNumeroAerolineas=0;
-    float ingresarNumeroLatam=0;
+	float Kilometros = 0;
+	float NumeroAerolineas=0;
+	float NumeroLatam=0;
+
+	float debitoAero;
+	float debitoLat;
+
+	float creditoAero;
+	float creditoLat;
+
+	float bitcoinAero=0;
+	float bitcoinLat=0;
+
+	float precioKmAero;
+	float precioKmLat;
+
+	float diferenciaPrecios;
+
+	//HARDCODEO
+	float kilometrosHardCode=7090 ;
+	float precioAerolineasHardcode=162965;
+	float precioLatamHardcode=159339;
+
+	float HardCodeDebitoAero;
+	float HardCodeDebitoLat;
+
+	float HardCodeCreditoAero;
+	float HardCodeCreditoLat;
+
+	float HardCodeBitcoinAero;
+	float HardCodeBitcoinLat;
 
 
-    float kilometrosHardCode=7090;
-
-    float precioAerolineasHardcode=162965;
-    float debitoAeroHardcode=120255.66;
-    float creditoAeroHardcode=150666.76;
-    float bitcoinAeroHardcode=33.66;
-    float precioUnitarioAeroHardcode=10799.88;
-
-    float precioLatamHardcode=159339;
-    float debitoLatamHardcode=120255.66;
-    float creditoLatamHardcode=150666.76;
-    float bitcoinLatamHardcode=33.66;
-    float precioUnitarioLatamHardcode=10799.88;
 
 
-
-    int opcion;
+	int opcion;
 	int otraOpcion;
 
 	do
 	    {
-	        opcion = menu();
+
+				printf("1) Ingrese kilómetros: (KM = %f) \n", Kilometros);
+				printf("2) Ingrese precio de vuelos: (AEROLINEAS = %f, LATAM = %f) \n", NumeroAerolineas, NumeroLatam);
+				printf("3) Calcular los costos: \n");
+				printf("4) Informe de resultados: \n");
+				printf("5) Carga forzada de datos: \n");
+				printf("6) Salir. \n");
+				fflush(stdout);
+				scanf("%i", &opcion);
 
 	        switch(opcion)
 	        {
 
 	        	case 1:
 
-	        			ingresarNumeroKM=ingresarKilometroPrecio(ingresarNumeroKM);
+	        		Kilometros=ingresarKilometroPrecio(Kilometros);
 
 
 	            break;
@@ -67,25 +89,14 @@ int main(void) {
 
 	            			case 1:
 
-	            				if(ingresarNumeroKM == 0)
+	            				if(Kilometros == 0)
 	            				{
 
 	            					printf("\nNo hay kilometros ingresados aun...!!\n\n");
 
 	            				}else
 	            				{
-	            					ingresarNumeroAerolineas=ingresarKilometroPrecio(ingresarNumeroAerolineas);
-
-	            					if(ingresarNumeroAerolineas==-1)
-	            					{
-
-	            						 printf("\nOperacion erronea!!\n\n");
-
-	            					}else
-	                        	    {
-	                        	         printf("\nOperacion exitosa!!\n\n");
-	                        	    }
-
+	            					NumeroAerolineas=ingresarKilometroPrecio(NumeroAerolineas);
 
 	            				}
 
@@ -93,25 +104,14 @@ int main(void) {
 
 	            			case 2:
 
-	            				if(ingresarNumeroKM == 0)
+	            				if(Kilometros == 0)
 	            			    {
 
 	            					  printf("\nNo hay kilometros ingresados aun...!!\n\n");
 
 	            			    }else
 	            			    {
-	            					  ingresarNumeroLatam=ingresarKilometroPrecio(ingresarNumeroLatam);
-
-	            				      if(ingresarNumeroLatam==-1)
-	            					  {
-
-	            					        printf("\nOperacion erronea!!\n\n");
-
-	            					  }else
-	            					  {
-	            					        printf("\nOperacion exitosa!!\n\n");
-	            					  }
-
+	            			    	NumeroLatam=ingresarKilometroPrecio(NumeroLatam);
 
 	            			    }
 
@@ -134,7 +134,7 @@ int main(void) {
 	            case 3:
 
 
-	            	if(ingresarNumeroKM == 0 || ingresarNumeroAerolineas==0 || ingresarNumeroLatam==0)
+	            	if(Kilometros == 0 || NumeroAerolineas==0 || NumeroLatam==0)
 	            	{
 
 	            		printf("\nNo hay kilometros y tampoco precios ingresados aun...!!\n\n");
@@ -144,30 +144,30 @@ int main(void) {
 	            	else
 	            	{
 
-	            		funcionDescuento(ingresarNumeroAerolineas);
-	            		funcionDescuento(ingresarNumeroLatam);
+	            		debitoAero=funcionDescuento(NumeroAerolineas);
+	            		debitoLat=funcionDescuento(NumeroLatam);
 
-	            	    funcionInteres(ingresarNumeroAerolineas);
-	            	    funcionInteres(ingresarNumeroLatam);
+	            		creditoAero=funcionInteres(NumeroAerolineas);
+	            		creditoLat=funcionInteres(NumeroLatam);
 
-	            	    funcionBitcoin(ingresarNumeroAerolineas);
-						funcionBitcoin(ingresarNumeroLatam);
+	            		bitcoinAero= funcionBitcoin(NumeroAerolineas);
+	            		bitcoinLat=funcionBitcoin(NumeroLatam);
 
-						funcionPrecioUnitario(ingresarNumeroAerolineas, ingresarNumeroKM);
-						funcionPrecioUnitario(ingresarNumeroLatam, ingresarNumeroKM);
+						precioKmAero= funcionPrecioUnitario(NumeroAerolineas, Kilometros);
 
-						funcionDiferenciaPrecios(ingresarNumeroLatam,ingresarNumeroAerolineas);
+						printf("Precio por km de Aerolineas: $ %f \n", precioKmAero);
 
-	            	    if(ingresarNumeroAerolineas==-1 && ingresarNumeroLatam == -1)
-	            	    {
+						precioKmLat= funcionPrecioUnitario(NumeroLatam, Kilometros);
 
-	            	    	printf("\nOperacion erronea!!\n\n");
+						printf("Precio por km de Latam: $ %f \n", precioKmLat);
 
-	            	    }
-	            	    else
-	            	    {
-	            	    	printf("\nOperacion exitosa!!\n\n");
-	            	    }
+
+
+						diferenciaPrecios= funcionDiferenciaPrecios(NumeroLatam,NumeroAerolineas);
+
+						printf("La diferencia de precios entre Aerolineas y Latam es de: $ %f \n", diferenciaPrecios);
+
+
 
 	            	}
 
@@ -178,7 +178,7 @@ int main(void) {
 	            case 4:
 
 
-	            	if(ingresarNumeroKM == 0 || ingresarNumeroAerolineas==0 || ingresarNumeroLatam==0)
+	            	if(Kilometros == 0 || NumeroAerolineas==0 || NumeroLatam==0)
 	            	{
 
 
@@ -187,32 +187,22 @@ int main(void) {
 
 	            	}else
 	            	{
-	            		printf("\nAerolíneas: %.2f",ingresarNumeroAerolineas);
-						printf("\nPrecio con tarjeta de débito: %.2f",funcionDescuento(ingresarNumeroAerolineas));
-						printf("\nPrecio con tarjeta de crédito: %.2f",funcionInteres(ingresarNumeroAerolineas));
-						printf("\nPrecio pagando con bitcoin: %.2f BTC",funcionBitcoin(ingresarNumeroAerolineas));
-						printf("\nPrecio unitario: %.2f \n ",funcionPrecioUnitario(ingresarNumeroAerolineas, ingresarNumeroKM));
+	            		printf("\nKilometros: %f",Kilometros);
 
-	            		printf("\nLatam: %.2f",ingresarNumeroLatam);
-	            	    printf("\nPrecio con tarjeta de débito: %.2f",funcionDescuento(ingresarNumeroLatam));
-	            	    printf("\nPrecio con tarjeta de crédito: %.2f",funcionInteres(ingresarNumeroLatam));
-	            	    printf("\nPrecio pagando con bitcoin: %.2f BTC",funcionBitcoin(ingresarNumeroLatam));
-	            		printf("\nPrecio unitario: %.2f \n ",funcionPrecioUnitario(ingresarNumeroLatam, ingresarNumeroKM));
+	            		printf("\nAerolíneas: %.2f",NumeroAerolineas);
+						printf("\nPrecio con tarjeta de débito: %.2f",debitoAero);
+						printf("\nPrecio con tarjeta de crédito: %.2f",creditoAero);
+						printf("\nPrecio pagando con bitcoin: %.2f BTC",bitcoinAero);
+						printf("\nPrecio unitario: %.2f \n ",precioKmAero);
 
+	            		printf("\nLatam: %.2f",NumeroLatam);
+	            	    printf("\nPrecio con tarjeta de débito: %.2f",debitoLat);
+	            	    printf("\nPrecio con tarjeta de crédito: %.2f",creditoLat);
+	            	    printf("\nPrecio pagando con bitcoin: %.2f BTC",bitcoinLat);
+	            		printf("\nPrecio unitario: %.2f \n ",precioKmLat);
 
+	            		printf("\nLa diferencia de precio es: %.2f \n ",diferenciaPrecios);
 
-	            	    printf("\nLa diferencia de precio es: %.2f \n ",funcionDiferenciaPrecios(ingresarNumeroAerolineas, ingresarNumeroLatam));
-
-	            	    if(ingresarNumeroAerolineas==-1 && ingresarNumeroLatam == -1 && ingresarNumeroKM==-1)
-	            	   	{
-
-	            	   	      printf("\nOperacion erronea!!\n\n");
-
-	            	   	}
-	            	   	else
-	            	    {
-	            	   	      printf("\nOperacion exitosa!!\n\n");
-	            	    }
 
 	            	}
 
@@ -224,21 +214,37 @@ int main(void) {
 	            case 5:
 
 
+
+	            	HardCodeDebitoAero = funcionDescuento(NumeroAerolineas);
+	            	HardCodeDebitoLat = funcionDescuento(NumeroLatam);
+
+	            	HardCodeCreditoAero = funcionInteres(NumeroAerolineas);
+	            	HardCodeCreditoLat = funcionInteres(NumeroLatam);
+
+	            	HardCodeBitcoinAero = funcionBitcoin (NumeroAerolineas);
+	            	HardCodeBitcoinLat = funcionBitcoin(NumeroLatam);
+
+
+
+
+
+	            	printf("\nKilometros: %.2f",kilometrosHardCode);
+
 	            	printf("\nAerolíneas: %.2f",precioAerolineasHardcode);
-					printf("\nPrecio con tarjeta de débito: %.2f",funcionDescuento(debitoAeroHardcode));
-					printf("\nPrecio con tarjeta de crédito: %.2f",funcionInteres(creditoAeroHardcode));
-					printf("\nPrecio pagando con bitcoin: %.2f BTC",funcionBitcoin(bitcoinAeroHardcode));
-					printf("\nPrecio unitario: %.2f \n ",funcionPrecioUnitario(precioUnitarioAeroHardcode, kilometrosHardCode));
+					printf("\nPrecio con tarjeta de débito: %.2f",HardCodeDebitoAero);
+					printf("\nPrecio con tarjeta de crédito: %.2f",HardCodeCreditoAero);
+					printf("\nPrecio pagando con bitcoin: %.2f BTC",HardCodeBitcoinAero);
+					printf("\nPrecio unitario: %.2f \n ",precioKmAero);
 
 	                printf("\nLatam: %.2f",precioLatamHardcode);
-	                printf("\nPrecio con tarjeta de débito: %.2f",funcionDescuento(debitoLatamHardcode));
-	                printf("\nPrecio con tarjeta de crédito: %.2f",funcionInteres(creditoLatamHardcode));
-	                printf("\nPrecio pagando con bitcoin: %.2f BTC",funcionBitcoin(bitcoinLatamHardcode));
-	                printf("\nPrecio unitario: %.2f \n ",funcionPrecioUnitario(precioUnitarioLatamHardcode, kilometrosHardCode));
+	                printf("\nPrecio con tarjeta de débito: %.2f",HardCodeDebitoLat);
+	                printf("\nPrecio con tarjeta de crédito: %.2f",HardCodeCreditoLat);
+	                printf("\nPrecio pagando con bitcoin: %.2f BTC",HardCodeBitcoinLat);
+	                printf("\nPrecio unitario: %.2f \n ",precioKmLat);
 
 
 
-		    		printf("\nLa diferencia de precio es: %.2f \n ",funcionDiferenciaPrecios(precioAerolineasHardcode, precioLatamHardcode));
+		    		printf("\nLa diferencia de precio es: %.2f \n ",diferenciaPrecios);
 
 	            break;
 
